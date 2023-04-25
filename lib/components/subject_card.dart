@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-import '../controller/grades.dart';
+import 'package:grade_app/view/subject_screen.dart';
+
 import 'package:grade_app/controller/subjects.dart';
 
 class SubjectCard extends StatelessWidget {
   final Subjects subject;
-  SubjectCard({super.key, required this.subject});
+  const SubjectCard({super.key, required this.subject});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {},
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => SubjectScreen(
+            subjectKey: subject.name.toLowerCase(),
+          ),
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -19,7 +26,7 @@ class SubjectCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(subject.name),
-            Text("${subject.mean()}"),
+            Text("${subject.calculateWeightedMean()}"),
           ],
         ),
       ),

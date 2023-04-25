@@ -18,7 +18,7 @@ class SubjectsAdapter extends TypeAdapter<Subjects> {
     };
     return Subjects(
       name: fields[0] as String,
-      grades: (fields[1] as List).cast<Grades>(),
+      grades: (fields[1] as HiveList).castHiveList(),
       coefficient: fields[2] as double,
     );
   }

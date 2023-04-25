@@ -15,25 +15,19 @@ class Subjects extends HiveObject {
 
   @HiveField(2)
   final double coefficient;
+
   Subjects({
     required this.name,
     required this.grades,
     required this.coefficient,
   });
 
-  double mean() {
-    grades.
-    return 0;
-  }
-
-  /*
-  double mean() {
+  double calculateWeightedMean() {
     double wavg = 0;
-    double weightSum = grades.map((e) => e.coefficient).sum;
-    for (var e in grades) {
-      wavg = wavg + ((e.grade * e.coefficient) / weightSum);
-    }
+    grades.forEach((e) {
+      wavg = wavg +
+          ((e.grade * e.coefficient) / grades.map((e) => e.coefficient).sum);
+    });
     return num.parse(wavg.toStringAsFixed(2)).toDouble();
   }
-  */
 }
