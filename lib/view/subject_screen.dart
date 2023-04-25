@@ -50,14 +50,14 @@ class SubjectScreen extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Divider(),
+              child: const Divider(),
             ),
             Expanded(
               child: ValueListenableBuilder(
                 valueListenable: gradeBox.listenable(),
-                builder: (context, gradebox, child) => ListView.builder(
+                builder: (context, Box gradebox, child) => ListView.builder(
                   padding: const EdgeInsets.all(40),
-                  itemCount: box.get(subjectKey)?.grades.toList().length,
+                  itemCount: box.get(subjectKey)!.grades.toList().length,
                   itemBuilder: (context, index) => GradeCard(
                     grade: box.get(subjectKey)!.grades.toList()[index],
                     subjectKey: subjectKey,
