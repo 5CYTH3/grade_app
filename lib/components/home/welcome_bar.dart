@@ -12,15 +12,6 @@ class WelcomeBar extends StatelessWidget {
   final box = Hive.box<Subjects>('subjects');
   final gradeBox = Hive.box<Grades>('grades');
 
-  Future<void> appendTestValuesToBox() {
-    final Subjects maths = Subjects(
-      name: "Maths",
-      grades: HiveList(gradeBox),
-      coefficient: 1.0,
-    );
-    return box.put(maths.name.toLowerCase(), maths);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +42,7 @@ class WelcomeBar extends StatelessWidget {
               context: context,
               builder: (context) => const SubjectDialog(),
             ),
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.add),
           )
         ],
       ),

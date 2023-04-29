@@ -18,6 +18,7 @@ class SubjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
         onPressed: () => showDialog(
           context: context,
           builder: (context) => GradeDialog(
@@ -35,10 +36,13 @@ class SubjectScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    "${box.get(subjectKey)?.calculateWeightedMean()}",
-                    style: GoogleFonts.inter(
-                      fontSize: 40,
+                  ValueListenableBuilder(
+                    valueListenable: box.listenable(),
+                    builder: (context, Box value, child) => Text(
+                      "${value.get(subjectKey)?.calculateWeightedMean()}",
+                      style: GoogleFonts.inter(
+                        fontSize: 40,
+                      ),
                     ),
                   ),
                   Text(
@@ -49,8 +53,12 @@ class SubjectScreen extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: const Divider(),
+              margin: const EdgeInsets.symmetric(horizontal: 40),
+              child: const Divider(
+                height: 1,
+                color: Colors.grey,
+                thickness: 1,
+              ),
             ),
             Expanded(
               child: ValueListenableBuilder(

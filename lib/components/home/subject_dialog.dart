@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:grade_app/controller/grades.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -41,26 +42,45 @@ class _SubjectDialogState extends State<SubjectDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        padding: const EdgeInsets.all(10),
-        height: 400,
+        padding: const EdgeInsets.all(20),
+        alignment: Alignment.center,
+        height: 300,
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              Text(
+                'Add a new subject',
+                style: GoogleFonts.abel(fontSize: 30),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               TextFormField(
                 controller: subjectNameController,
                 autocorrect: false,
+                decoration: const InputDecoration(
+                  labelText: 'Subject name',
+                  border: OutlineInputBorder(),
+                ),
                 validator: (val) =>
                     (val == null || val.isEmpty) ? 'Enter a valid name' : null,
               ),
+              const SizedBox(
+                height: 20,
+              ),
               TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Coefficient',
+                  border: OutlineInputBorder(),
+                ),
                 controller: coeffValueController,
                 keyboardType: TextInputType.number,
                 autocorrect: false,
                 validator: (val) =>
-                    (val == null || val.isEmpty) ? 'Enter a valid name' : null,
+                    (val == null || val.isEmpty) ? 'Enter a valid value' : null,
               ),
-              MaterialButton(
+              TextButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     addNewSubject(
@@ -70,7 +90,14 @@ class _SubjectDialogState extends State<SubjectDialog> {
                     Navigator.of(context).pop();
                   }
                 },
-                child: const Text("Submit"),
+                style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                ),
+                child: const Text("Add"),
               )
             ],
           ),

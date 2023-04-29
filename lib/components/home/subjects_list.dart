@@ -18,7 +18,9 @@ class SubjectsList extends StatelessWidget {
               horizontal: 20,
               vertical: 40,
             ),
-            separatorBuilder: (context, index) => const Divider(),
+            separatorBuilder: (context, index) => const SizedBox(
+                  height: 20,
+                ),
             itemCount: subjectsbox.length,
             itemBuilder: (context, index) {
               final list = subjectsbox.values.toList();

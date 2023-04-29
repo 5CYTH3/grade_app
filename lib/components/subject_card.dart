@@ -26,7 +26,8 @@ class SubjectCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(subject.name),
-            Text("${subject.calculateWeightedMean()}"),
+            Text(
+                "${subject.calculateWeightedMean()}   (${subject.coefficient})"),
           ],
         ),
       ),
