@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final String name = "John";
+  final String name = "mate";
   final box = Hive.box<Subjects>('subjects');
 
   double generalWeightedMean() {
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                       style: GoogleFonts.inter(fontSize: 40),
                     ),
                   ),
-                  const Text('Votre moyenne générale')
+                  const Text('Your GPA')
                 ],
               ),
             ),

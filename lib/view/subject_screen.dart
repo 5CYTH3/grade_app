@@ -18,7 +18,7 @@ class SubjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () => showDialog(
           context: context,
           builder: (context) => GradeDialog(
@@ -46,7 +46,7 @@ class SubjectScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Votre moyenne en '${box.get(subjectKey)?.name.trim()}'",
+                    "Your '${box.get(subjectKey)?.name.trim()}' average",
                     style: GoogleFonts.inter(fontSize: 20, color: Colors.grey),
                   )
                 ],
