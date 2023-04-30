@@ -37,19 +37,8 @@ jobs:
         with:
           name: release-apk
       - name: Create Github Release
-        id: create-new-release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.run_number }}
-          release_name: (android) Release ${{ github.run_number }}
-      - name: Upload release assets
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./build/app/outputs/apk/release/app-release.apk
-          asset_name: release-apk-${{ github.run_number }}.apk
-          asset_content_type: application/apk
+          tag: ${{ github.run_number }}
+          name: (android) Release ${{ github.run_number }}
+          artifacts: release-apk.zip
