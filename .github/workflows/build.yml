@@ -33,7 +33,7 @@ jobs:
     needs: build-android
     steps:
       - name: Download artifact
-        uses: actions/download-artifacts@v3
+        uses: actions/download-artifact@v3
         with:
           name: release-apk
       - name: Create Github Release
