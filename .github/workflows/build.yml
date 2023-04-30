@@ -37,9 +37,19 @@ jobs:
         with:
           name: release-apk
       - name: Create Github Release
+        id: create-new-release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.run_number }}
           release_name: (android) Release ${{ github.run_number }}
+      - name: Upload release assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./release-apk.zip
+          asset_name: release-apk-${{ github.run_number }}.zip
+          asset_content_type: application/zip
