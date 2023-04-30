@@ -33,14 +33,17 @@ jobs:
     needs: build-android
     steps:
       - uses: actions/checkout@v3
+      - run: ls -l
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: release-apk
+      - run: ls -l
+
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.run_number }}
           name: (android) Release ${{ github.run_number }}
-          artifacts: "release-apk"
+          artifacts: "release-apk.apk"
           token: ${{ secrets.GITHUB_TOKEN }}
