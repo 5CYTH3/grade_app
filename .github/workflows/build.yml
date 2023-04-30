@@ -42,5 +42,5 @@ jobs:
         with:
           tag: ${{ github.run_number }}
           name: (android) Release ${{ github.run_number }}
-          artifacts: "release-apk"
+          artifacts: "release-apk.apk"
           token: ${{ secrets.GITHUB_TOKEN }}
