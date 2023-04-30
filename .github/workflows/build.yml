@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
@@ -23,15 +23,16 @@ jobs:
       # - run: flutter analyze .
       - name: Build APK
         run: flutter build apk
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         with:
           name: release-apk
-          path: ./build/app/outputs/apk/release/app-release.apk
+          path: build/app/outputs/apk/release/app-release.apk
   release-android:
     name: Release Project
     runs-on: ubuntu-latest
     needs: build-android
     steps:
+      - uses: actions/checkout@v3
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
@@ -41,5 +42,5 @@ jobs:
         with:
           tag: ${{ github.run_number }}
           name: (android) Release ${{ github.run_number }}
-          artifacts: release-apk.zip
+          artifacts: "release-apk"
           token: ${{ secrets.GITHUB_TOKEN }}
