@@ -64,7 +64,7 @@ class _GradeDialogState extends State<GradeDialog> {
                 controller: gradeController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  labelText: 'Subject name',
+                  labelText: 'Grade',
                   border: OutlineInputBorder(),
                 ),
                 autocorrect: false,

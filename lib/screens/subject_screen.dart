@@ -31,10 +31,26 @@ class SubjectScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              box.delete(subjectKey);
-              Navigator.of(context).pop();
-            },
+            onPressed: () => showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                content: const Text("Do you want to delete this subject?"),
+                actions: [
+                  MaterialButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text("No"),
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      box.delete(subjectKey);
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("Yes"),
+                  )
+                ],
+              ),
+            ),
             icon: Icon(Icons.delete),
           )
         ],
