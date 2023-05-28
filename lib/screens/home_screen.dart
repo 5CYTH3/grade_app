@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grade_app/components/home/subjects_list.dart';
 import 'package:grade_app/components/home/welcome_bar.dart';
 import 'package:grade_app/models/subjects.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:collection/collection.dart';
-import 'dart:developer';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
