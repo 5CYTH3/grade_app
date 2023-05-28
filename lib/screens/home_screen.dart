@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grade_app/components/home/subjects_list.dart';
 import 'package:grade_app/components/home/welcome_bar.dart';
-import 'package:grade_app/controller/subjects.dart';
+import 'package:grade_app/models/subjects.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:collection/collection.dart';
 
@@ -19,11 +19,18 @@ class _HomePageState extends State<HomePage> {
 
   double generalWeightedMean() {
     double wavg = 0;
-    box.values.toList().forEach((e) {
+
+    // This filter all empty means so it doesn't pollute the final GPA
+    var list = box.values
+        .toList()
+        .where((element) => element.calculateWeightedMean() != null);
+
+    for (Subjects e in list) {
       wavg = wavg +
-          ((e.calculateWeightedMean() * e.coefficient) /
-              box.values.toList().map((e) => e.coefficient).sum);
-    });
+          ((e.calculateWeightedMean()! * e.coefficient) /
+              list.map((e) => e.coefficient).sum);
+    }
+
     return num.parse(wavg.toStringAsFixed(2)).toDouble();
   }
 
@@ -67,7 +74,23 @@ class _HomePageState extends State<HomePage> {
                 thickness: 1,
               ),
             ),
-            SubjectsList(),
+            ValueListenableBuilder(
+              valueListenable: box.listenable(),
+              builder: (context, value, child) {
+                if (box.values.toList().isEmpty) {
+                  return Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Click on the '+' button to add a subject!",
+                      style:
+                          GoogleFonts.inter(fontSize: 10, color: Colors.grey),
+                    ),
+                  );
+                } else {
+                  return SubjectsList();
+                }
+              },
+            ),
           ],
         ),
       ),

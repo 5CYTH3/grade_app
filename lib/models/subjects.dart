@@ -22,12 +22,13 @@ class Subjects extends HiveObject {
     required this.coefficient,
   });
 
-  double calculateWeightedMean() {
+  double? calculateWeightedMean() {
     double wavg = 0;
-    grades.forEach((e) {
+    if (grades.isEmpty) return null;
+    for (var e in grades) {
       wavg = wavg +
           ((e.grade * e.coefficient) / grades.map((e) => e.coefficient).sum);
-    });
+    }
     return num.parse(wavg.toStringAsFixed(2)).toDouble();
   }
 }

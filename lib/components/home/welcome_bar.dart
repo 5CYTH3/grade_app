@@ -3,8 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:grade_app/controller/grades.dart';
-import 'package:grade_app/controller/subjects.dart';
+import 'package:grade_app/models/grades.dart';
+import 'package:grade_app/models/subjects.dart';
 
 class WelcomeBar extends StatelessWidget {
   final String name;
