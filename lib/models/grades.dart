@@ -10,5 +10,12 @@ class Grades extends HiveObject {
   @HiveField(1)
   double coefficient;
 
-  Grades({required this.grade, required this.coefficient});
+  @HiveField(2)
+  double denominator;
+
+  Grades({
+    required this.grade,
+    required this.coefficient,
+    required this.denominator,
+  });
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grade_app/components/home/subjects_list.dart';
 import 'package:grade_app/components/home/welcome_bar.dart';
+import 'package:grade_app/models/grades.dart';
 import 'package:grade_app/models/subjects.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:collection/collection.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final String name = "mate";
   final box = Hive.box<Subjects>('subjects');
+  final gradeBox = Hive.box<Grades>("grades");
 
   double generalWeightedMean() {
     double wavg = 0;

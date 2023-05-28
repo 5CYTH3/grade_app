@@ -19,17 +19,20 @@ class GradesAdapter extends TypeAdapter<Grades> {
     return Grades(
       grade: fields[0] as double,
       coefficient: fields[1] as double,
+      denominator: fields[2] as double,
     );
   }
 
   @override
   void write(BinaryWriter writer, Grades obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.grade)
       ..writeByte(1)
-      ..write(obj.coefficient);
+      ..write(obj.coefficient)
+      ..writeByte(2)
+      ..write(obj.denominator);
   }
 
   @override
