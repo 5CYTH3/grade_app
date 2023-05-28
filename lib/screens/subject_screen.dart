@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grade_app/components/grade_card.dart';
 import 'package:grade_app/components/grade_dialog.dart';
-import 'package:grade_app/controller/grades.dart';
+import 'package:grade_app/models/grades.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:grade_app/controller/subjects.dart';
+import 'package:grade_app/models/subjects.dart';
 
 class SubjectScreen extends StatelessWidget {
   final String subjectKey;
@@ -15,6 +15,7 @@ class SubjectScreen extends StatelessWidget {
   final gradeBox = Hive.box<Grades>('grades');
 
   // Need to implement animations
+  // Need to implement deleting
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +27,20 @@ class SubjectScreen extends StatelessWidget {
             subjectKey: subjectKey,
           ),
         ),
+      ),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              box.delete(subjectKey);
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.delete),
+          )
+        ],
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
       ),
       body: SafeArea(
         child: Column(

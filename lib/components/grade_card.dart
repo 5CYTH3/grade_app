@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:grade_app/controller/subjects.dart';
+import 'package:grade_app/models/subjects.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../controller/grades.dart';
+import '../models/grades.dart';
 
 class GradeCard extends StatelessWidget {
   final String subjectKey;

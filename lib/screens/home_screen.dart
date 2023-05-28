@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grade_app/components/home/subjects_list.dart';
 import 'package:grade_app/components/home/welcome_bar.dart';
-import 'package:grade_app/controller/subjects.dart';
+import 'package:grade_app/models/subjects.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:collection/collection.dart';
+import 'dart:developer';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,11 +21,18 @@ class _HomePageState extends State<HomePage> {
 
   double generalWeightedMean() {
     double wavg = 0;
-    box.values.toList().forEach((e) {
+
+    // This filter all empty means so it doesn't pollute the final GPA
+    var list = box.values
+        .toList()
+        .where((element) => element.calculateWeightedMean() != null);
+
+    for (Subjects e in list) {
       wavg = wavg +
-          ((e.calculateWeightedMean() * e.coefficient) /
-              box.values.toList().map((e) => e.coefficient).sum);
-    });
+          ((e.calculateWeightedMean()! * e.coefficient) /
+              list.map((e) => e.coefficient).sum);
+    }
+
     return num.parse(wavg.toStringAsFixed(2)).toDouble();
   }
 

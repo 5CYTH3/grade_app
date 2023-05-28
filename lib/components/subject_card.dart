@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grade_app/view/subject_screen.dart';
+import 'package:grade_app/screens/subject_screen.dart';
 
-import 'package:grade_app/controller/subjects.dart';
+import 'package:grade_app/models/subjects.dart';
 
 class SubjectCard extends StatelessWidget {
   final Subjects subject;

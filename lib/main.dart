@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grade_app/controller/grades.dart';
-import 'package:grade_app/controller/subjects.dart';
+import 'package:grade_app/models/grades.dart';
+import 'package:grade_app/models/subjects.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'view/home_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() async {
   await Hive.initFlutter();
