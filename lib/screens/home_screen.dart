@@ -74,7 +74,23 @@ class _HomePageState extends State<HomePage> {
                 thickness: 1,
               ),
             ),
-            SubjectsList(),
+            ValueListenableBuilder(
+              valueListenable: box.listenable(),
+              builder: (context, value, child) {
+                if (box.values.toList().isEmpty) {
+                  return Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Click on the '+' button to add a subject!",
+                      style:
+                          GoogleFonts.inter(fontSize: 10, color: Colors.grey),
+                    ),
+                  );
+                } else {
+                  return SubjectsList();
+                }
+              },
+            ),
           ],
         ),
       ),
