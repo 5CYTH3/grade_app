@@ -21,10 +21,11 @@ class _GradeDialogState extends State<GradeDialog> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void addNewGrade(double grade, double coeff) {
+  void addNewGrade(double grade, double coeff, double denominator) {
     final Grades gradePushed = Grades(
       grade: grade,
       coefficient: coeff,
+      denominator: denominator,
     );
     gradeBox.add(gradePushed);
     box.get(widget.subjectKey)?.grades.add(gradePushed);
@@ -34,6 +35,8 @@ class _GradeDialogState extends State<GradeDialog> {
   final gradeController = TextEditingController();
 
   final coeffValueController = TextEditingController();
+
+  final denominatorController = TextEditingController();
 
   @override
   void dispose() {
@@ -49,6 +52,7 @@ class _GradeDialogState extends State<GradeDialog> {
       child: Container(
         padding: const EdgeInsets.all(20),
         height: 300,
+        width: 250,
         child: Form(
           key: _formKey,
           child: Column(
@@ -60,16 +64,44 @@ class _GradeDialogState extends State<GradeDialog> {
               const SizedBox(
                 height: 20,
               ),
-              TextFormField(
-                controller: gradeController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: 'Grade',
-                  border: OutlineInputBorder(),
-                ),
-                autocorrect: false,
-                validator: (val) =>
-                    (val == null || val.isEmpty) ? 'Enter a valid grade' : null,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: gradeController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: 'Grade',
+                        border: OutlineInputBorder(),
+                      ),
+                      autocorrect: false,
+                      validator: (val) => (val == null || val.isEmpty)
+                          ? 'Enter a valid grade'
+                          : null,
+                    ),
+                  ),
+                  Container(
+                    child: const Text('/'),
+                    width: 10,
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: denominatorController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: 'Denominator',
+                        border: OutlineInputBorder(),
+                      ),
+                      autocorrect: false,
+                      validator: (val) => (val == null || val.isEmpty)
+                          ? 'Enter a valid denominator'
+                          : null,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,
@@ -92,6 +124,7 @@ class _GradeDialogState extends State<GradeDialog> {
                     addNewGrade(
                       num.parse(gradeController.text).toDouble(),
                       num.parse(coeffValueController.text.trim()).toDouble(),
+                      num.parse(denominatorController.text.trim()).toDouble(),
                     );
                     Navigator.of(context).pop();
                   }

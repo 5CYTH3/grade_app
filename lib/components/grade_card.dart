@@ -39,7 +39,10 @@ class GradeCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Text("${grade.grade}/20"), Text("(${grade.coefficient})")],
+          children: [
+            Text("${grade.grade}/${grade.denominator}"),
+            Text("(${grade.coefficient})")
+          ],
         ),
       ),
     );

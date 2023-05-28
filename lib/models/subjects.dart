@@ -27,7 +27,8 @@ class Subjects extends HiveObject {
     if (grades.isEmpty) return null;
     for (var e in grades) {
       wavg = wavg +
-          ((e.grade * e.coefficient) / grades.map((e) => e.coefficient).sum);
+          ((((e.grade / e.denominator) * 20) * e.coefficient) /
+              grades.map((e) => e.coefficient).sum);
     }
     return num.parse(wavg.toStringAsFixed(2)).toDouble();
   }
